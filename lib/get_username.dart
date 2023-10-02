@@ -156,8 +156,7 @@ class _UserNameState extends State<UserName> {
                   onTap: () {
                     if (firstName.text.isNotEmpty &&
                         lastName.text.isNotEmpty &&
-                        userNumber.text.isNotEmpty &&
-                        selectedImage != null) {
+                        userNumber.text.isNotEmpty ) {
                       db.details.add({
                         'firstName': firstName.text,
                         'lastName': lastName.text,
