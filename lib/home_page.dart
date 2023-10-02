@@ -80,6 +80,17 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                         ),
                       ),
+                       Text(
+                        db.details[0]["firstName"] != null ||
+                                db.details[0]["firstName"].isNotEmpty
+                            ? db.details[0]["firstName"]
+                            : '',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.orange[600],
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     
                     ],
                   ),
