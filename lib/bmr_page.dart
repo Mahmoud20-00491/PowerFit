@@ -214,257 +214,269 @@ class _BMRPageState extends State<BMRPage> {
         ),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              Container(
-                  height: 250,
-                  child: PageView.builder(
-                    // Add the PageController
-                    controller: _pageController,
-                    itemCount: images.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          width: 380,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage(images[index]['img']),
-                              fit: BoxFit.cover,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                Container(
+                    height: 250,
+                    child: PageView.builder(
+                      // Add the PageController
+                      controller: _pageController,
+                      itemCount: images.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: 380,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                image: AssetImage(images[index]['img']),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                          ),
-                          child: Stack(
-                            children: [
-                              // Background image
-                              Positioned.fill(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.3),
+                            child: Stack(
+                              children: [
+                                // Background image
+                                Positioned.fill(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.3),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              // Text overlay
-                              Positioned(
-                                top: 180,
-                                left: 10,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      images[index]['text'],
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
+                                // Text overlay
+                                Positioned(
+                                  top: 180,
+                                  left: 10,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        images[index]['text'],
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      images[index]['specialWord'],
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.orange[600],
+                                      Text(
+                                        images[index]['specialWord'],
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.orange[600],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text(
+                      "Gender:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Radio(
+                          fillColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.orange[600] ?? Colors.orange),
+                          value: "male",
+                          groupValue: _genderController.text,
+                          onChanged: (value) {
+                            setState(() {
+                              _genderController.text = value.toString();
+                            });
+                          },
+                        ),
+                        const Text(
+                          "Male",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
                           ),
                         ),
-                      );
-                    },
-                  )),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    "Gender:",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Radio(
-                        fillColor: MaterialStateColor.resolveWith(
-                            (states) => Colors.orange[600] ?? Colors.orange),
-                        value: "male",
-                        groupValue: _genderController.text,
-                        onChanged: (value) {
-                          setState(() {
-                            _genderController.text = value.toString();
-                          });
-                        },
-                      ),
-                      const Text(
-                        "Male",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                        Radio(
+                          fillColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.orange[600] ?? Colors.orange),
+                          value: "female",
+                          groupValue: _genderController.text,
+                          onChanged: (value) {
+                            setState(() {
+                              _genderController.text = value.toString();
+                            });
+                          },
                         ),
-                      ),
-                      Radio(
-                        fillColor: MaterialStateColor.resolveWith(
-                            (states) => Colors.orange[600] ?? Colors.orange),
-                        value: "female",
-                        groupValue: _genderController.text,
-                        onChanged: (value) {
-                          setState(() {
-                            _genderController.text = value.toString();
-                          });
-                        },
-                      ),
-                      const Text(
-                        "Female",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                        const Text(
+                          "Female",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    "Age:",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: _ageController,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      decoration: InputDecoration(
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2)),
-                        hintText: "Enter your age",
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2.0, color: Colors.white),
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    "Height:",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: _heightController,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      decoration: InputDecoration(
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2)),
-                        hintText: "Enter your height",
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2.0, color: Colors.white),
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    "Weight:",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 200,
-                    child: TextField(
-                      style: const TextStyle(color: Colors.white),
-                      controller: _weightController,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      decoration: InputDecoration(
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2)),
-                        hintText: "Enter your Weight",
-                        hintStyle: TextStyle(color: Colors.grey[400]),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                width: 2.0, color: Colors.white),
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  _calculate();
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange[600],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 100, vertical: 20)),
-                child: const Text(
-                  'Calculate',
-                  style: TextStyle(fontSize: 18),
+                  ],
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text(
+                      "Age:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        controller: _ageController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          focusedBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 2)),
+                          hintText: "Enter your age",
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  width: 2.0, color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text(
+                      "Height:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        controller: _heightController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          focusedBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 2)),
+                          hintText: "Enter your height",
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  width: 2.0, color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text(
+                      "Weight:",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: TextField(
+                        style: const TextStyle(color: Colors.white),
+                        controller: _weightController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          focusedBorder: const UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 2)),
+                          hintText: "Enter your Weight",
+                          hintStyle: TextStyle(color: Colors.grey[400]),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  width: 2.0, color: Colors.white),
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    _calculate();
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange[600],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 100, vertical: 20)),
+                  child: const Text(
+                    'Calculate',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
