@@ -154,16 +154,25 @@ class _UserNameState extends State<UserName> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if (firstName.text.isNotEmpty &&
-                        lastName.text.isNotEmpty &&
-                        userNumber.text.isNotEmpty ) {
+                    if (selectedImage != null) {
                       db.details.add({
-                        'firstName': firstName.text,
-                        'lastName': lastName.text,
-                        'userNumber': userNumber.text,
-                        'image': selectedImage!.path,
+                        "firstName": firstName.text,
+                        "lastName": lastName.text,
+                        "userNumber": userNumber.text,
+                        "image": selectedImage!.path,
                       });
+                    } else {
+                      if (firstName.text.isNotEmpty &&
+                          lastName.text.isNotEmpty &&
+                          userNumber.text.isNotEmpty) {
+                        db.details.add({
+                          'firstName': firstName.text,
+                          'lastName': lastName.text,
+                          'userNumber': userNumber.text,
+                        });
+                      }
                     }
+
 
                     db.updateDataBaseDetails();
                     db.loadDataDetails();
