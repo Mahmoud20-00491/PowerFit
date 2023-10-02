@@ -31,7 +31,7 @@ class _UserNameState extends State<UserName> {
   // New list to store selected image paths
   Future<void> _pickImage() async {
     final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
 
     setState(() {
       selectedImage = image;
