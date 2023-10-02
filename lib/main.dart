@@ -22,30 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Gabarito",
       ),
-      home: FutureBuilder<bool>(
-        future: _checkFirstTime(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data!) {
-              return AnimatedSplashScreen(
-                  splash: "assets/barbell.png",
-                  splashIconSize: 150,
-                  backgroundColor: Colors.black,
-                  nextScreen: SplashScreen(),
-                  splashTransition: SplashTransition.fadeTransition);
-            } else {
-              return AnimatedSplashScreen(
-                  splash: "assets/barbell.png",
-                  splashIconSize: 150,
-                  backgroundColor: Colors.black,
-                  nextScreen: HomePage(),
-                  splashTransition: SplashTransition.fadeTransition);
-            }
-          } else {
-            return Container(); // You can show a loading indicator here
-          }
-        },
-      ),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -59,3 +36,27 @@ class MyApp extends StatelessWidget {
     return isFirstTime;
   }
 }
+// FutureBuilder<bool>(
+//         future: _checkFirstTime(),
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             if (snapshot.data!) {
+//               return AnimatedSplashScreen(
+//                   splash: "assets/barbell.png",
+//                   splashIconSize: 150,
+//                   backgroundColor: Colors.black,
+//                   nextScreen: SplashScreen(),
+//                   splashTransition: SplashTransition.fadeTransition);
+//             } else {
+//               return AnimatedSplashScreen(
+//                   splash: "assets/barbell.png",
+//                   splashIconSize: 150,
+//                   backgroundColor: Colors.black,
+//                   nextScreen: HomePage(),
+//                   splashTransition: SplashTransition.fadeTransition);
+//             }
+//           } else {
+//             return Container(); // You can show a loading indicator here
+//           }
+//         },
+//       ),
