@@ -1,6 +1,7 @@
 # gym_app
 
-# ScreenShots
+ScreenShots
+
 ![Untitled-6](https://github.com/Mahmoud20-00491/PowerFit/assets/121718282/8ab788a7-8fdc-4fb6-b858-b8aefbbabe3c)
 
 ![Untitled-1](https://github.com/Mahmoud20-00491/PowerFit/assets/121718282/84c1c62d-052e-448c-9481-3f6788ff1299)
