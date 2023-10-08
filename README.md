@@ -1,4 +1,4 @@
-# gym_app
+# PowerFit
 
 ScreenShots
 
